@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
-const DevSchema = new Schema({
+const DevSchema = new Schema({ //Schema vai montar qual a estrutura do meu BD pra armazenar um DEv dentro
+
     name:{
         type: String,
         required: true,
@@ -12,11 +13,11 @@ const DevSchema = new Schema({
     },
     bio: String,
     avatar: {
-        type: String,
+        type: String, //vai receber o endereço do avatar da api do github
         required: true,
     },
     likes:[{
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId, //formato do ID do mongoDB
         ref: 'Dev',
     }],
     dislike:[{
@@ -24,7 +25,7 @@ const DevSchema = new Schema({
         ref: 'Dev',
     }],
 }, {
-    timestamps: true,
+    timestamps: true, //cria no BD o createAt e o updatedAt
 })
 
-module.exports =  model('Dev', DevSchema);
+module.exports =  model('Dev', DevSchema);  //model importado do mongoose recebe 2 parâmetros que é o nome do model e o schema

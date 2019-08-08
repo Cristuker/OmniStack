@@ -4,10 +4,10 @@ const Dev = require('../models/Dev')
 module.exports = {
     async store(req,res){
 
-        const { user } = req.headers;
-        const { devId } = req.params;
+        const { user } = req.headers; //quem esta logado/"dá o like"
+        const { devId } = req.params; //quem "recebe o like"
 
-        const loggedDev = await Dev.findById(user)
+        const loggedDev = await Dev.findById(user)  //consigo acessar qualquer info dele do banco de dados/ "loggedDev.avatar"
         const targetDev = await Dev.findById(devId)
 
         if(!targetDev){
@@ -18,10 +18,10 @@ module.exports = {
             console.log('DEU MATCH!')
         }
 
-        loggedDev.likes.push(targetDev._id)
+        loggedDev.likes.push(targetDev._id) //_id como o mongo salva
 
-        await loggedDev.save();
+        await loggedDev.save() //para modificar a base de dados.
 
-        return res.json(loggedDev)
+        return res.json(loggedDev) 
     }
-};
+}
