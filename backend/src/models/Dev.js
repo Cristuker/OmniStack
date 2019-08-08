@@ -20,7 +20,7 @@ const DevSchema = new Schema({ //Schema vai montar qual a estrutura do meu BD pr
         type: Schema.Types.ObjectId, //formato do ID do mongoDB
         ref: 'Dev',
     }],
-    dislike:[{
+    dislikes:[{
         type: Schema.Types.ObjectId,
         ref: 'Dev',
     }],

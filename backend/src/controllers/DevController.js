@@ -40,7 +40,6 @@ module.exports = {
         const response = await axios.get(`https://api.github.com/users/${username}`)
          //axios.get é assíncrono
 
-        //console.log(response.data) 
         //.data é onde o axios armazena os dados
 
 
