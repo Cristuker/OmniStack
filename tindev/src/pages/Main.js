@@ -67,7 +67,8 @@
                 )
             }
             </View>
-            <View style={ styles.buttonsContainer}>
+            { users.length > 0 &&
+                <View style={ styles.buttonsContainer}>
                 <TouchableOpacity style={ styles.button} onPress={handleDislike} >
                     <Image source={dislike} />
                 </TouchableOpacity>
@@ -75,6 +76,7 @@
                     <Image source={like} />
                 </TouchableOpacity>
             </View>
+            }
         </SafeAreaView>
      )
  }
