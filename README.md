@@ -1,8 +1,10 @@
 # OmniStack
-Projeto da semana OmniStack da Rockeseat
 
+##Projeto da semana OmniStack da Rockeseat
 
-Web: ReactJS
-Mobile: React Native
-Backend: NodeJS
-API-Rest
+### Tecnologias ultilizadas
+* Web: ReactJS
+* Backend: NodeJS
+* API-Rest
+
+![](/images/Itsamatch.png)
