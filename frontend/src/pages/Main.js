@@ -83,7 +83,7 @@ function Main({ match }){
             {matchDev &&(
                 <div className="match-container">
                     <img src={itsamatch} alt="its a match"/>
-                    <img className="avatar" src={matchDev.avatar} />
+                    <img className="avatar" src={matchDev.avatar} alt="Avatar"/>
                     <strong>{matchDev.name}</strong>
                     <p>{matchDev.bio}</p>
 
