@@ -4,6 +4,8 @@ const Dev = require('../models/Dev')
 module.exports = {
     async store(req,res){
 
+        
+
         const { user } = req.headers; //quem esta logado/"dá o like"
         const { devId } = req.params; //quem "recebe o like"
 
@@ -15,7 +17,16 @@ module.exports = {
         }
 
         if(targetDev.likes.includes(loggedDev._id)){
-            console.log('DEU MATCH!')
+            //web socket será usado para avisar os dois usuarios que o match aconteceu
+            const loggedSocket = req.connectedUsers[user];
+            const targetSocket = req.connectedUsers[devId];
+
+            if(loggedSocket){
+                req.io.to(loggedSocket).emit('match', targetDev)
+            }
+            if(targetSocket){
+                req.io.to(targetSocket).emit('match', loggedDev)
+            }
         }
 
         loggedDev.likes.push(targetDev._id) //_id como o mongo salva
@@ -23,5 +34,6 @@ module.exports = {
         await loggedDev.save() //para modificar a base de dados.
 
         return res.json(loggedDev) 
+        
     }
 }

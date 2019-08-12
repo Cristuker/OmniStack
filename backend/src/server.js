@@ -4,17 +4,36 @@ const routes = require('./routes');
 
 const cors = require('cors')
 
-const server = express();//inicia o server
+const app = express();//inicia o server
 
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
+
+const connectedUsers = { };
+
+io.on( 'connection', socket =>{
+
+    const { user } = socket.handshake.query;
+
+    connectedUsers[user] = socket.id
+    
+})
 
 mongoose.connect('mongodb+srv://cristuker:136crcc12@cluster0-gszt9.azure.mongodb.net/tindev?retryWrites=true&w=majority',{
     useNewUrlParser: true
 });
 
-server.use(cors());
+app.use((req,res,next) =>{
+    req.io = io;
+    req.connectedUsers = connectedUsers;
 
-server.use(express.json())
-server.use(routes)
+    return next();
+})
+
+app.use(cors());
+
+app.use(express.json())
+app.use(routes)
 
 server.listen(3333);
 //escutando a porta 3333 ou sejá o servidor está rodando aqui
